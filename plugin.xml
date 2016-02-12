@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Rostvertol"
+            id="ru.rostvertolplc.osapr.createitem4ico.commands.category">
+      </category>
+      <command
+            name="Create Item 4 ICO"
+            categoryId="ru.rostvertolplc.osapr.createitem4ico.commands.category"
+            id="ru.rostvertolplc.osapr.createitem4ico.commands.sampleCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="ru.rostvertolplc.osapr.createitem4ico.commands.sampleCommand"
+            class="ru.rostvertolplc.osapr.createitem4ico.handlers.SampleHandler">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="ru.rostvertolplc.osapr.createitem4ico.commands.sampleCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+   </extension>
+   <extension
+	point="org.eclipse.ui.menus">
+		<menuContribution
+      	locationURI="toolbar:icm_Toolbar?after=additions">
+      	<command
+           	commandId="ru.rostvertolplc.osapr.createitem4ico.commands.sampleCommand"                
+           	icon="platform:/plugin/com.teamcenter.rac.aifrcp/com/teamcenter/rac/aif/images/mrmapplication_32.png"
+            tooltip="Создать классифицируемый Item"               
+            id="ru.rostvertolplc.osapr.createitem4ico.menus.sampleCommand">
+			<visibleWhen>
+                    <and>
+                        <reference
+                            definitionId="com.teamcenter.rac.classification.icm.inMainView">
+                        </reference>
+                        <with variable="rac_command_suppression">
+                            <not>
+                                <iterate operator="or">
+                                    <equals
+                                        value="com.teamcenter.rac.g4mCreate"/>
+                                </iterate>
+                            </not>
+                        </with>
+                    </and>
+                </visibleWhen>            
+        </command>               
+		</menuContribution>
+   </extension>
+
+</plugin>

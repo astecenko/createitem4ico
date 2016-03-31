@@ -1,12 +1,12 @@
 package ru.rostvertolplc.osapr.createitem4ico.handlers;
 
-import java.awt.Frame;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-import java.util.Map.Entry;
+//import java.awt.Frame;
+//import java.util.ArrayList;
+//import java.util.List;
+//import java.util.Vector;
+//import java.util.Map.Entry;
 
-import javax.swing.SwingUtilities;
+//import javax.swing.SwingUtilities;
 
 import ru.rostvertolplc.osapr.createitem4ico.components.*;
 import ru.rostvertolplc.osapr.helpers.*;
@@ -14,10 +14,10 @@ import ru.rostvertolplc.osapr.helpers.*;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Shell;
+//import org.eclipse.swt.widgets.Button;
+//import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
+//import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -29,20 +29,20 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
 import java.awt.datatransfer.Transferable;
 
-import java.util.AbstractMap.SimpleEntry;
+//import java.util.AbstractMap.SimpleEntry;
 
 
 import com.teamcenter.rac.aif.AbstractAIFUIApplication;
-import com.teamcenter.rac.aif.kernel.AIFComponentContext;
-import com.teamcenter.rac.aif.kernel.AbstractAIFSession;
+//import com.teamcenter.rac.aif.kernel.AIFComponentContext;
+//import com.teamcenter.rac.aif.kernel.AbstractAIFSession;
 import com.teamcenter.rac.aif.kernel.InterfaceAIFComponent;
 import com.teamcenter.rac.aifrcp.AIFUtility;
 import com.teamcenter.rac.kernel.*;
 import com.teamcenter.services.rac.core.DataManagementService;
 import com.teamcenter.rac.util.MessageBox;
 import com.teamcenter.rac.util.Registry;
-import com.teamcenter.rac.util.Utilities;
-import com.teamcenter.rac.classification.*;
+//import com.teamcenter.rac.util.Utilities;
+//import com.teamcenter.rac.classification.*;
 import com.teamcenter.rac.classification.common.*;
 import com.teamcenter.rac.classification.common.operations.G4MOpenOperation;
 import com.teamcenter.services.rac.core._2007_01.DataManagement.*;

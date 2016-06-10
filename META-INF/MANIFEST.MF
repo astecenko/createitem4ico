@@ -2,19 +2,20 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Createitem4ico
 Bundle-SymbolicName: ru.rostvertolplc.osapr.createitem4ico; singleton:=true
-Bundle-Version: 1.0.0.alpha
+Bundle-Version: 1.10.0.1
 Bundle-Activator: ru.rostvertolplc.osapr.createitem4ico.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.teamcenter.rac.kernel;bundle-version="8000.3.0",
- com.teamcenter.rac.common;bundle-version="8000.3.0",
- com.teamcenter.rac.tcapps;bundle-version="8000.3.0",
- com.teamcenter.rac.aifrcp;bundle-version="8000.3.0",
- com.teamcenter.rac.util;bundle-version="8000.3.0",
- com.teamcenter.rac.pse;bundle-version="8000.3.0",
- TcSoaCoreRac;bundle-version="8000.3.0",
+ com.teamcenter.rac.kernel;bundle-version="10000.1.0",
+ com.teamcenter.rac.common;bundle-version="10000.1.0",
+ com.teamcenter.rac.tcapps;bundle-version="10000.1.0",
+ com.teamcenter.rac.aifrcp;bundle-version="10000.1.0",
+ com.teamcenter.rac.util;bundle-version="10000.1.0",
+ com.teamcenter.rac.pse;bundle-version="10000.1.0",
+ TcSoaCoreRac;bundle-version="10000.1.0",
+ LanitSdk_tc10;bundle-version="1.0.0",
  ru.rostvertolplc.osapr.base;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: ru.rostvertolplc.osapr.createitem4ico.handlers
 Bundle-Vendor: RVT_OSAPR

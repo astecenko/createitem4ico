@@ -1,5 +1,7 @@
 package ru.rostvertolplc.osapr.createitem4ico.components;
 
+import java.util.HashMap;
+
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -10,6 +12,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Shell;
+
+import com.teamcenter.rac.kernel.TCComponentItemType;
+
 import ru.rostvertolplc.osapr.helpers.*;
 
 public class NewItemDialog extends TitleAreaDialog {
@@ -26,6 +31,7 @@ public class NewItemDialog extends TitleAreaDialog {
 	private Text textRev;
 	private Combo comboType;
 	private Combo comboUom;
+	private HashMap<String, String> preferenceTypes = null;
 
 	// private LOVUIComponent uomLovComboBox;
 
@@ -78,7 +84,8 @@ public class NewItemDialog extends TitleAreaDialog {
 		// It is not very efficient for longer messages.
 		// Thus we utilize it as a 'title' and instaed we appeng a label to act
 		// as body. (see below).
-		setMessage(this.title, this.msgType); //$NON-NLS-1$
+		setMessage(this.bodyMsg, this.msgType); //$NON-NLS-1$
+		setTitle(this.title);
 		// setTitle(); //not used.
 
 		// Set the size of the dialogue.
@@ -106,22 +113,27 @@ public class NewItemDialog extends TitleAreaDialog {
 	protected Control createDialogArea(Composite parent) {
 		Composite area = (Composite) super.createDialogArea(parent);
 		Composite container = new Composite(area, SWT.NONE);
-		container.setLayoutData(new GridData(GridData.FILL_BOTH));
-		GridLayout layout = new GridLayout(2, false);
+		//container.setLayoutData(new GridData(GridData.FILL_BOTH));		
+		GridData gridData = new GridData(SWT.FILL, SWT.TOP, true, false);
+		//gridData.minimumWidth = 400;
+		GridLayout layout = new GridLayout(2, false);		
 		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		container.setLayout(layout);
 
-		Label label = new Label(container, 0);
+		/*Label label = new Label(container, 0);
+		//Label label = new Label(area, 0);
 		label.setText(this.bodyMsg);
 		label = new Label(container, 0);
-		label.setText("");
-		label = new Label(container, 0);
-
+		label.setText(""); */
+		Label label = new Label(container, 0);	
 		label.setText("Идентификатор:");
 		textId = new Text(container, SWT.BORDER);
+		textId.setLayoutData(gridData);
+		//textId.setSize(textId.getSize().x+30, textId.getSize().y);
 		label = new Label(container, 0);
 		label.setText("Наименование:");
 		textName = new Text(container, SWT.BORDER);
+		textName.setLayoutData(gridData);
 		label = new Label(container, 0);
 		label.setText("Ревизия:");
 		textRev = new Text(container, SWT.BORDER);
@@ -129,15 +141,15 @@ public class NewItemDialog extends TitleAreaDialog {
 		label.setText("Тип объекта:");
 		comboType = new Combo(container, SWT.BORDER | SWT.DROP_DOWN
 				| SWT.V_SCROLL | SWT.READ_ONLY);
-		String[] preferenceValue = PreferenceHelper
-				.getPreferenceValueArray("RVT_ITEM4ICO_TYPES");
-		if ((preferenceValue == null) || (preferenceValue.length == 0)) {
-			comboType.add("H47_Material");
-			comboType.add("H47_Standart_Izd");
-		} else {
-			for (String str : preferenceValue) {
-				comboType.add(str);
-			}			
+		comboType.setLayoutData(gridData);
+		preferenceTypes = PreferenceHelper.getPreferenceValueHashMap("RVT_ITEM4ICO_TYPES");
+		if (preferenceTypes == null || preferenceTypes.isEmpty()) {
+			preferenceTypes = new HashMap<String, String>();
+			preferenceTypes.put("Материал", "H47_Material");
+			preferenceTypes.put("Стандартное изделие", "H47_Standart_Izd");
+		}	
+		for (String str : CollectionHelper.getHashMapKeys(preferenceTypes)) {
+			comboType.add(str);
 		}
 		comboType.select(0);
 		label = new Label(container, 0);
@@ -160,10 +172,10 @@ public class NewItemDialog extends TitleAreaDialog {
 
 	// save content of the Text fields because they get disposed
 	// as soon as the Dialog closes
-	protected void saveInput() {
-		resultItem = new TCItemHelper(textId.getText(), textRev.getText(),
-				comboType.getText(), textName.getText(), comboUom.getText());
-
+	protected void saveInput() {		
+		resultItem = new TCItemHelper(textId.getText(),
+			textRev.getText(), preferenceTypes.get(comboType.getText()),
+			textName.getText(), comboUom.getText());
 	}
 
 	/** Called when the ok button is pressed */

@@ -57,21 +57,16 @@ public class SampleHandler extends AbstractHandler implements ClipboardOwner {
 
 
         //--- Set Dialogue options.
-        String title = "Создание записи в классификаторе совместно с классифицированным объектом\n"
-        		+ "\tПеред созданием объекта необходимо выбрать целевой класс хранения!";
-        String body = "Поля \"Наименование\" и \"Тип объекта\" обязательны для заполнения\n"
-                + "Оставьте поля \"Идентификатор\" и \"Ревизия\" пустыми, для автоназначения";
-
+        String title = "Создание записи в классификаторе совместно с классифицированным объектом";
+        String body = "Перед созданием объекта выберите целевой класс хранения!\n" 
+        		+ "\tПоля \"Наименование\" и \"Тип объекта\" обязательны для заполнения";
         int msgType = IMessageProvider.INFORMATION;  //Can be one of: NONE ERROR INFORMATION WARNING
         //--- Instantiate & open the dialogue.
 
         NewItemDialog myDialog =
         	new NewItemDialog(window.getShell(), title, body, null, arrayOfUoms, msgType);
         int retVal = myDialog.open();
-
-
-
-
+       
         //Handle dialogue outcome.
         switch (retVal) {
         case Window.OK:  //Avoid using generic '1' and '0' as it's confusing. Use defined constants as shown.
@@ -131,11 +126,10 @@ public class SampleHandler extends AbstractHandler implements ClipboardOwner {
     			currentApplication.getSession().setStatus("Paste Tc Component from Clipbord");
 
     			try {
-    				Object localObject3;
-        			localObject3 = new G4MOpenOperation(m_context, m_reg.getString("g4mOpenOperation.MESSAGE"));
-                    ((G4MOpenOperation)localObject3).setComponent((InterfaceAIFComponent)itemRevision);
-                    ((G4MOpenOperation)localObject3).executeOperation();
-
+    				G4MOpenOperation localObject3 = new G4MOpenOperation(m_context, m_reg.getString("g4mOpenOperation.MESSAGE"));
+                    localObject3.setComponent((InterfaceAIFComponent)itemRevision);
+                    localObject3.executeOperation();
+                    //m_context.getTablePane().getG4MTable().getModel().
 				} catch (Exception e) {
 					MessageBox.post(e);
 				}
